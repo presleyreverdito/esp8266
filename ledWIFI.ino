@@ -11,7 +11,7 @@ aREST rest = aREST(client);
 char* device_id = "9u2co4";
 // WiFi parameters
 const char* ssid = "Identificando...";
-const char* password = "campestre21";
+const char* password = "";
 // Functions
 void callback(char* topic, byte* payload, unsigned int length);
 void setup(void)
