@@ -2,7 +2,7 @@
 #include <ESP8266WiFi.h>
 // WiFi parameters
 const char* ssid = "Identificando...";
-const char* password = "campestre21";
+const char* password = "";
 void setup(void)
 {
 // Start Serial
