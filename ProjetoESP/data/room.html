@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+<div align="center">
+    <style type="text/css">
+        .tg  {border-collapse:collapse;border-spacing:0;}
+        .tg td{font-family:Arial, sans-serif;font-size:14px;padding:20px 20px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+        .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:20px 20px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+        .tg .tg-led2{/*background-color:#fe0000*/background-color: #cccccc;text-align:center;vertical-align:middle;min-width: 100px}
+        .tg .tg-led5{/*background-color:#fe0000*/background-color: #cccccc;text-align:center;vertical-align:middle;min-width: 100px}
+        .tg .tg-led4{/*background-color:#f8ff00*/background-color: #cccccc;text-align:center;vertical-align:middle;min-width: 100px}
+        .tg .tg-led1{/*background-color:#f8ff00*/background-color: #cccccc;text-align:center;vertical-align:middle;min-width: 100px}
+        .tg .tg-led3{/*background-color:#32cb00*/background-color: #cccccc;text-align:center;vertical-align:middle;min-width: 100px}
+        </style>
+        <table class="tg">
+            <tr>
+                <th class="tg-led1" abbr="off" onclick="turnLED(this)" id="led1">DESLIGADO</th>
+                <th class="tg-led2" abbr="off" onclick="turnLED(this)" id="led2">DESLIGADO</th>
+                <th class="tg-led3" abbr="off" onclick="turnLED(this)" id="led3">DESLIGADO</th>
+                <th class="tg-led4" abbr="off" onclick="turnLED(this)" id="led4">DESLIGADO</th>
+                <th class="tg-led5" abbr="off" onclick="turnLED(this)" id="led5">DESLIGADO</th>
+            </tr>
+        </table>
+</div>
+<script>
+    var yligado = "#f8ff00";
+    var gligado = "#32cb00";
+    var rligado = "#fe0000"
+    var desligado = "#cccccc";
+
+    var xhttp = new XMLHttpRequest();
+
+    function turnLED(tCell){
+        var cLED = tCell.id;
+        var cState = tCell.abbr;
+        
+        if(cState == "on"){
+            xhttp.open("GET", "mudarLED?"+cLED+"=0", true);
+            xhttp.send();
+            tCell.style.backgroundColor = desligado;
+            tCell.abbr = "off";
+            tCell.innerHTML = "DESLIGADO";
+        }else{
+            xhttp.open("GET", "mudarLED?"+cLED+"=1", true);
+            xhttp.send();
+            if(tCell.id == "led2" || tCell.id == "led5")
+                tCell.style.backgroundColor = rligado;
+            else if(tCell.id == "led1" || tCell.id == "led4")
+                tCell.style.backgroundColor = yligado;
+            else
+                tCell.style.backgroundColor = gligado;
+            
+            tCell.abbr = "on";
+            tCell.innerHTML = "LIGADO";
+        }
+        /*
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("LEDState").innerHTML =
+            this.responseText;
+            }
+        };
+        */
+    }
+
+</script>
+
+
+</body>
+</head>
+</html>

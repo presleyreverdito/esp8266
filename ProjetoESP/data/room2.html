@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+    
+<style type="text/css">
+    .tg  {border-collapse:collapse;border-spacing:0;}
+    .tg td{font-family:Arial, sans-serif;font-size:14px;padding:100px 50px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:black;}
+    .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:100px 70px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+    .tg .tg-lavand {background-color:#cccccc;border-color:#000000;text-align:center}
+    .tg .tg-banheiro{background-color:#cccccc;border-color:#000000;text-align:center;vertical-align:middle;border-width: 1px}
+    .tg .tg-cozinha{background-color:#cccccc;border-color:#000000;text-align:center;vertical-align:middle}
+    .tg .tg-sala{background-color:#cccccc;border-color:#000000;text-align:center;vertical-align:middle}
+    .tg .tg-quarto{background-color:#cccccc;border-color:#000000;text-align:center;vertical-align:middle;width:200px;border-width: 1px}
+</style>
+
+    <table class="tg">
+        <tr>
+        <th class="tg-lavand" abbr="off" onclick="turnLED(this)" id="led1"><h2>Lavanderia</h2></th>
+        <th class="tg-quarto" colspan="2" rowspan="2" abbr="off" onclick="turnLED(this)" id="led2"><h2>Quarto</h2></th>
+        </tr>
+        <tr>
+        <td class="tg-cozinha" rowspan="2" abbr="off" onclick="turnLED(this)" id="led3"><h2>Cozinha</h2></td>
+        </tr>
+        <tr>
+        <td class="tg-sala" colspan="2" rowspan="3" abbr="off" onclick="turnLED(this)" id="led4"><h2>Sala</h2></td>
+        </tr>
+        <tr>
+        <td class="tg-banheiro" rowspan="2" abbr="off" onclick="turnLED(this)" id="led5"><h2>Banheiro</h2></td>
+        </tr>
+        <tr>
+        </tr>
+    </table>
+
+<script>
+    var ligado = "#eeeeee";
+    var desligado = "#cccccc";
+
+    function turnLED(tCell){
+        var cLED = tCell.id;
+        var cState = tCell.abbr;
+        var nState = "0";
+
+        var xhttp = new XMLHttpRequest();
+
+        if(cState == "on"){
+            nState = "0";
+            tCell.style.backgroundColor = desligado;
+            tCell.abbr = "off";
+            xhttp.open("GET", "mudarLED?"+cLED+"="+nState, true);
+            xhttp.send();
+        }else{
+            nState = "1"
+            tCell.style.backgroundColor = ligado;
+            tCell.abbr = "on";
+            xhttp.open("GET", "mudarLED?"+cLED+"="+nState, true);
+            xhttp.send();
+        }
+        /*
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("LEDState").innerHTML =
+            this.responseText;
+            }
+        };
+        */
+    }
+
+</script>
+
+
+</body>
+</head>
+</html>
