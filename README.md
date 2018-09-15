@@ -6,6 +6,12 @@ Marco Schwartz.**
 Recomenda-se fortemente a consulta no livro.
 
 http://arduino.esp8266.com/stable/package_esp8266com_index.json
+
+
 https://github.com/blynkkk/blynk-library/releases
+
+
 https://github.com/schinken/SimpleTimer
+
+
 https://cloud.arest.io/id/digital/porta/estado
